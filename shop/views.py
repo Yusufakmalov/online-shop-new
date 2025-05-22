@@ -1,6 +1,26 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from cart.forms import CartAddProductForm
+from django.contrib.postgres.search import SearchVector
+
+from .forms import SearchForm
+
+
+
+
+def product_search(request):
+    form = SearchForm()
+    query = None
+    results = ()
+
+
+    if 'query'  in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Product.objects.filter(available=True).annotate(search=SearchVector('name', 'description'),).filter(search=query)
+
+    return render(request, 'main/search.html', {'form': form, 'query': query, 'results': results})
 
 
 def product_list(request, category_slug=None):

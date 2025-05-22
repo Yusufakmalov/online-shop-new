@@ -1,0 +1,135 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.auth-container {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 35px 30px;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid #f0f0f0;
+}
+
+.auth-container h2 {
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form p {
+    margin-bottom: 18px;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus {
+    border-color: #e50914;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.1);
+}
+
+.btn-submit {
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background: #c70812;
+}
+
+.form-links {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.form-links a {
+    color: #e50914;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
+}
+
+.errorlist {
+    color: #e50914;
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.helptext {
+    display: block;
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 25px 20px;
+    }
+    
+    .auth-form input[type="text"],
+    .auth-form input[type="password"],
+    .auth-form input[type="email"] {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .btn-submit {
+        padding: 10px 16px;
+        font-size: 15px;
+    }
+}

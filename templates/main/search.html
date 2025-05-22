@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load category_tags %}
+
+{% block title %}Search{% endblock %}
+
+{% block extra_head %}
+<!-- Tailwind CSS CDN (remove if already included in base.html) -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div class="container mx-auto px-4 py-6">
+    {% if query %}
+      <h1 class="text-2xl font-bold mb-2">Results for "{{ query }}"</h1>
+      <h3 class="text-lg mb-6 text-gray-700">
+        {% with results.count as total_results %}
+          Found {{ total_results }} result{{ total_results|pluralize }}
+        {% endwith %}
+      </h3>
+
+      {% if results %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {% for product in results %}
+            <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+              <a href="{{ product.get_absolute_url }}">
+                {% if product.image %}
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover">
+                {% else %}
+                  <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">No Image</div>
+                {% endif %}
+              </a>
+              <div class="p-4">
+                <h4 class="text-lg font-semibold text-blue-600 hover:underline">
+                  <a href="{{ product.get_absolute_url }}">
+                    {{ product.name }}
+                  </a>
+                </h4>
+                <p class="text-gray-700 text-sm mt-2">
+                  {{ product.description|truncatewords_html:12 }}
+                </p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-gray-600 mt-4">There are no results for your query.</p>
+      {% endif %}
+
+      <div class="mt-6">
+        <a href="{% url 'shop:product_search' %}" class="text-blue-500 hover:underline">Search again</a>
+      </div>
+    {% else %}
+      <h1 class="text-2xl font-semibold text-red-500">No search query provided.</h1>
+    {% endif %}
+  </div>
+{% endblock %}
