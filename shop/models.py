@@ -64,6 +64,7 @@ class Product(models.Model):
             models.Index(fields=['id', 'slug']),
             models.Index(fields=['name']),
             models.Index(fields=['-available']),
+            models.Index(fields=['-created'])
         ]
 
     def __str__(self):
